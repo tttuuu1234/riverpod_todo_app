@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_todo_app/presentation/controllers/todo/todo_add_controller.dart';
 import 'package:riverpod_todo_app/presentation/controllers/todo/todo_list_controller.dart';
 
+/// Todo追加画面
 class TodoAddPage extends ConsumerWidget {
   const TodoAddPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print('画面がビルドされたよ！');
     final todoAddState = ref.watch(todoAddProvider);
-    final todoAddNotifier = ref.read(todoAddProvider.notifier);
+    final todoAddNotifier = ref.watch(todoAddProvider.notifier);
     final todoListNotifier = ref.read(todoListProvider.notifier);
 
     return Scaffold(
@@ -26,7 +26,6 @@ class TodoAddPage extends ConsumerWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              todoAddNotifier.setId();
               todoListNotifier.add(todoAddState);
               Navigator.pop(context);
             },

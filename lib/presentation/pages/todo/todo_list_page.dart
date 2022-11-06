@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_todo_app/presentation/controllers/todo/todo_list_controller.dart';
 import 'package:riverpod_todo_app/presentation/pages/todo/todo_add_page.dart';
+import 'package:riverpod_todo_app/presentation/pages/todo/todo_edit_page.dart';
 import 'package:riverpod_todo_app/presentation/states/todo_list/todo_list_state.dart';
 
+/// Todo一覧画面
 class TodoListPage extends ConsumerWidget {
   const TodoListPage({super.key});
 
@@ -11,8 +13,6 @@ class TodoListPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final todoListState = ref.watch(todoListProvider);
     final todoListNotifier = ref.watch(todoListProvider.notifier);
-
-    print('TodoLIst画面ビルドされた');
 
     return Scaffold(
       appBar: AppBar(
@@ -101,7 +101,13 @@ class TodoListView extends StatelessWidget {
             child: ListTile(
               title: Text(todo.title),
               onLongPress: () {
-                print('ロング');
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: ((context) {
+                      return TodoEditPage(todoState: todo);
+                    }),
+                  ),
+                );
               },
             ),
           ),
