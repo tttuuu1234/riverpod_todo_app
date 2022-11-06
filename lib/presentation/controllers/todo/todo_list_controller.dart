@@ -23,4 +23,10 @@ class TodoListController extends StateNotifier<TodoListState> {
       ...state.list,
     ]);
   }
+
+  void delete(String id) {
+    final newTodoList =
+        state.list.where((element) => element.id != id).toList();
+    state = state.copyWith(list: newTodoList);
+  }
 }

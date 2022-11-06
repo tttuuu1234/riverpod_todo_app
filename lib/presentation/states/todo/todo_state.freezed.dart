@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TodoState {
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
 
@@ -29,7 +30,7 @@ abstract class $TodoStateCopyWith<$Res> {
   factory $TodoStateCopyWith(TodoState value, $Res Function(TodoState) then) =
       _$TodoStateCopyWithImpl<$Res, TodoState>;
   @useResult
-  $Res call({String title, DateTime date});
+  $Res call({String id, String title, DateTime date});
 }
 
 /// @nodoc
@@ -45,10 +46,15 @@ class _$TodoStateCopyWithImpl<$Res, $Val extends TodoState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? date = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -68,7 +74,7 @@ abstract class _$$_TodoStateCopyWith<$Res> implements $TodoStateCopyWith<$Res> {
       __$$_TodoStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, DateTime date});
+  $Res call({String id, String title, DateTime date});
 }
 
 /// @nodoc
@@ -82,10 +88,15 @@ class __$$_TodoStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? date = null,
   }) {
     return _then(_$_TodoState(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -101,8 +112,11 @@ class __$$_TodoStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TodoState implements _TodoState {
-  const _$_TodoState({required this.title, required this.date});
+  const _$_TodoState(
+      {required this.id, required this.title, required this.date});
 
+  @override
+  final String id;
   @override
   final String title;
   @override
@@ -110,7 +124,7 @@ class _$_TodoState implements _TodoState {
 
   @override
   String toString() {
-    return 'TodoState(title: $title, date: $date)';
+    return 'TodoState(id: $id, title: $title, date: $date)';
   }
 
   @override
@@ -118,12 +132,13 @@ class _$_TodoState implements _TodoState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TodoState &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.date, date) || other.date == date));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, date);
+  int get hashCode => Object.hash(runtimeType, id, title, date);
 
   @JsonKey(ignore: true)
   @override
@@ -134,9 +149,12 @@ class _$_TodoState implements _TodoState {
 
 abstract class _TodoState implements TodoState {
   const factory _TodoState(
-      {required final String title,
+      {required final String id,
+      required final String title,
       required final DateTime date}) = _$_TodoState;
 
+  @override
+  String get id;
   @override
   String get title;
   @override

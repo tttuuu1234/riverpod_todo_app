@@ -26,6 +26,7 @@ class TodoAddPage extends ConsumerWidget {
           ),
           ElevatedButton(
             onPressed: () {
+              todoAddNotifier.setId();
               todoListNotifier.add(todoAddState);
               Navigator.pop(context);
             },
